@@ -1,0 +1,41 @@
+name: Pipeline Aula
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+
+  teste:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Instalar HTMLHint
+        run: npm install -g htmlhint
+
+      - name: Validar HTML
+        run: htmlhint index.html
+
+  verificar-arquivo:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verificar se index.html existe
+        run: test -f index.html
+
+  contar-linhas:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Contar linhas do HTML
+        run: wc -l index.html
